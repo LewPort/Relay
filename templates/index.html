@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Mission Control</title>
+    <META id="META" name="viewport" content="width=device-width; initial-scale=1.0" >
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h3>{{ temp }}°c</h3>
+    <h3>{{ humidity }}%</h3>
+    <form method="post">
+	<input id="switch" type="submit" name="onoff" value="{{ switch_text }}">
+    </form>
+    <form method="post">
+	<input id="switch" type="submit" name="startTimer" value="Start Timer (min)">
+        <input id="timerinput" type="number" id="time" name="time" placeholder="30" size="3" maxlength="3">
+    </form>
+<body>
+</html>

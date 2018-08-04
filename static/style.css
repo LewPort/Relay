@@ -1,0 +1,34 @@
+body {
+    background-color: #001c2b;
+    color: white;
+    font-family: Arial;
+    padding: 10vh 10vw;
+    letter-spacing: 10px;
+    text-align: center;
+    font-size: 30px;
+    }
+
+#switch {
+    background-color: #0178aa;
+    width: 80vw;
+    margin: 10px 0px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    text-transform: uppercase;
+    }
+
+#timerinput {
+    width: 50vw;
+    color: inherit;
+    font-family: inherit;
+    background-color: inherit;
+    text-align: inherit;
+    font-size: 30px;
+    border: 0;
+    border-bottom: 3px solid gray;
+    }
