@@ -32,3 +32,14 @@ body {
     border: 0;
     border-bottom: 3px solid gray;
     }
+
+#conditionstable {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#conditionsicons {
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+}

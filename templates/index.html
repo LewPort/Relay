@@ -7,8 +7,20 @@
 </head>
 
 <body>
-    <h3>{{ temp }}°c</h3>
-    <h3>{{ humidity }}%</h3>
+    <table id="conditionstable">
+        <tr>
+            <th><img id="conditionsicons" src="{{ url_for('static', filename='indoor.png') }}"></th>
+            <th><img id= "conditionsicons" src="{{ url_for('static', filename='outdoor.png') }}"></th>
+        </tr>
+        <tr>
+            <td><h3>{{ conditions['indoor']['temp'] }}°c</h3></td>
+            <td><h3>{{ conditions['outdoor']['temp'] }}°c</h3></td>
+        </tr>
+        <tr>
+            <td><h3>{{ conditions['indoor']['humidity'] }}%</h3></td>
+            <td><h3>{{ conditions['outdoor']['humidity'] }}%</h3></td>
+        </tr>
+    </table>
     <form method="post">
 	<input id="switch" type="submit" name="onoff" value="{{ switch_text }}">
     </form>
