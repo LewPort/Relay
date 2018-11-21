@@ -3,7 +3,6 @@ import relayAPI
 import temp
 
 app = Flask(__name__)
-relayAPI.off(2)
 
 def switch_text(state):
     if state:

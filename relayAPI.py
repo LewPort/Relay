@@ -11,13 +11,13 @@ TIMER = 0
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-#What PI pins have we connected the relays to?
-activePins = [2,3,4,5]
-#Now set those pins up...
-for i in activePins:
-    GPIO.setup(i, GPIO.OUT)
-
 #API Functionz
+
+def init(activePins):
+    for i in activePins:
+        GPIO.setup(i, GPIO.OUT)
+        off(i)
+
 def on(PIN):
     GPIO.output(PIN, ON)
 
@@ -43,3 +43,8 @@ def timer(m):
         time.sleep(1)
     off()
     return "Time's up!"
+
+#What RPi pins have we connected the relays to?
+activePins = [2,3,4,5]
+#Now set those pins up...
+init(activePins)
