@@ -12,7 +12,7 @@ def switch_text(state):
 
 @app.route('/')
 def index():
-    return render_template('index.html', switch_text=switch_text(relayAPI.state(2)))
+    return render_template('index.html')
 
 @app.route('/switch')
 def switch():
