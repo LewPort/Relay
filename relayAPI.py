@@ -12,7 +12,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 #What PI pins have we connected the relays to?
-activePins = [2]
+activePins = [2,3,4,5]
 #Now set those pins up...
 for i in activePins:
     GPIO.setup(i, GPIO.OUT)
