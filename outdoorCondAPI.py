@@ -56,4 +56,4 @@ api = None
 while True:
     api = return_current(get_data())
     write_json(api)
-    time.sleep(15*60)
+    time.sleep(5*60)

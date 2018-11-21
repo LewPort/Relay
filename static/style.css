@@ -8,12 +8,17 @@ body {
     font-size: 30px;
     }
 
+h3 {
+    margin: 5px;
+}
+
 .datetime {
     color: grey;
     font-family: Arial;
     letter-spacing: 1px;
     text-align: center;
     font-size: 10px;
+    margin: 1px;
     }
 
 #switch {
@@ -47,7 +52,8 @@ body {
 }
 
 #conditionsicons {
-    padding: 15px;
+    padding: 10px;
+    margin: 5px;
     width: 150px;
     height: 150px;
 }
