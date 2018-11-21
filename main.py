@@ -1,21 +1,9 @@
-from flask import Flask, render_template, request, redirect
-import weatherscrape as outdoor
-import relay
+from flask import Flask, render_template, request, redirect, Response
+import relayAPI
 import temp
 
 app = Flask(__name__)
-relay.off()
-
-def get_temps():
-    outdoors = outdoor.get_report()
-    conditions = {'indoor':
-                  {'temp': temp.temp(),
-                   'humidity': temp.humidity()},
-                  'outdoor':
-                   {'temp': outdoors['temp'],
-                   'humidity': outdoors['humidity']}
-                   }
-    return conditions
+relayAPI.off(2)
 
 def switch_text(state):
     if state:
@@ -23,18 +11,24 @@ def switch_text(state):
     else:
         return 'Lights are Off'
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        if 'onoff' in request.form:
-            relay.switch()
-        elif 'time' in request.form and request.form.get("time"):
-            time = int(request.form.get("time"))
-            print('%d minute timer set.' % time)
-            relay.timer(time)
-        return redirect('/')
-    else:
-        return render_template('index.html', switch_text=switch_text(relay.get_state()), conditions=get_temps())
+    return render_template('index.html', switch_text=switch_text(relayAPI.state(2)))
+
+@app.route('/switch')
+def switch():
+    relayAPI.switch(2)
+    return Response(200)
+
+@app.route('/on')
+def on():
+    relayAPI.on(2)
+    return Response(200)
+
+@app.route('/off')
+def off():
+    relayAPI.off(2)
+    return Response(200)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=1977)

@@ -34,28 +34,29 @@
         }, 5000);
         
 //      RELAY STATE API CALL
-        function switchtext() {
-            $.getJSON("{{ url_for('static', filename='relayStateAPI.json') }}", function(response){
+        setInterval(function() {
+            $.getJSON("{{ url_for('static', filename='currentRelayState.json') }}", function(response){
                 var json = response;
-                if (json['state'][0] == true){
+                if (json['relay']['state'] == true){
                     onofftxt = 'Lights Are On'
                 }
                 else {
                     onofftxt = 'Lights Are Off'
                 }
-                document.getElementById("switch").innerHTML = onofftxt;
+                document.getElementById("switch").value = onofftxt;
             });   
-        }
-        setInterval(switchtext, 1000);
+        }, 1000);
 
 //	ON/OFF BUTTON
 	function onLightButtonClick() {
-  		fetch("/switch")
+		console.log("butts")
+  		window.fetch("PUT", "/s
 	}
 
         
     </script>
 
+<!--    <script type="text/javascript" src="{{ url_for('static', filename='jsonUpdater.js') }}"></script>-->
 </head>
 
 <body>
@@ -83,7 +84,7 @@
             <td><smalltext id="outtime" class="datetime">Loading</smalltext></td>
         </tr>
     </table>
-    <button id="switch" name="onoff" onclick="onLightButtonClick()">...</button>
+    <button id="switch" name="onoff" onclick="onLightButtonClick()">{{ switch_text }}</button>
     <form method="post">
 	<input id="switch" type="submit" name="startTimer" value="Start Timer (min)">
         <input id="timerinput" type="number" name="time" placeholder="30" size="3" maxlength="3">

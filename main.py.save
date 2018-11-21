@@ -1,0 +1,45 @@
+from flask import Flask, render_template, request, redirect
+import relay
+import temp
+
+app = Flask(__name__)
+relay.off()
+
+##def get_temps():
+##    outdoors = outdoor.get_report()
+##    conditions = {'indoor':
+##                  {'temp': temp.temp(),
+##                   'humidity': round(temp.humidity())},
+##                  'outdoor':
+##                   {'temp': outdoors['temp'],
+##                   'humidity': outdoors['humidity']}
+##                   }
+##    return conditions
+
+def switch_text(state):
+    if state:
+        return 'Lights are On'
+    else:
+        return 'Lights are Off'
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        if 'onoff' in request.form:
+            relay.switch()
+        elif 'time' in request.form and request.form.get("time"):
+            time = int(request.form.get("time"))
+            print('%d minute timer set.' % time)
+            relay.timer(time)
+        return redirect('/')
+    else:
+        return render_template('index.html', switch_text=switch_text(relay.get_state()))
+
+@app.route('/switch', methods=["PUT"])
+def switch():
+    if request.method == 'PUT'
+    relay.switch()
+    return "nothing"
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=1977)
